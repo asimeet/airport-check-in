@@ -60,8 +60,9 @@ function queueManager(noOfCounters) {
     // This function is called by airport.js as and when people join the queue (based on @arrivalMs).
     async function registerWaiter(personName, fnCounterSimulator) {
         let availableHelpDesk = await HelpDeskFactory.getAvailableHelpDesk();
-        if (availableHelpDesk)
+        if (availableHelpDesk) {
             availableHelpDesk.assignTask(fnCounterSimulator(personName));
+        }
     }
     return registerWaiter;
 }

@@ -62,7 +62,9 @@ function queueManager(noOfCounters: number) {
     fnCounterSimulator: (personName: string) => Promise<void>) {
 
     let availableHelpDesk = await HelpDeskFactory.getAvailableHelpDesk();
-    if (availableHelpDesk) availableHelpDesk.assignTask(fnCounterSimulator(personName));
+    if (availableHelpDesk) {
+      availableHelpDesk.assignTask(fnCounterSimulator(personName));
+    }
 
   }
 
