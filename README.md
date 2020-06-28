@@ -28,7 +28,7 @@ Number of tickets a person wants. It takes exactly 1 sec to issue a ticket. So i
 #### arrivalSec
 Number of seconds after which a person joins the queue. The time can be in decimal. It is rounded to 1 decimal place before using.
 
-## Assignment
+## Details
 - Processing of this input file is present in `airport.js`.
 - `airport.js` imports `queue-manager.js`. The contract between the files is already documented in the comments of `queue-manager.js`. Please read all the comments in this file carefully.
 - The queue management in implemented in `queue-manager.js`. Following rules apply:
