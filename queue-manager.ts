@@ -38,20 +38,16 @@ class HelpDeskFactory {
       }
     }
   }
-  private static getRunningTasks() {
-    let runningTasks = this.helpDesks.map(item => item.currentTask);
-    runningTasks = runningTasks.filter(item => item.status === Status.inprogress);
-    return runningTasks;
+
+  static getAvailableHelpDesk() {
+    return this.helpDesks.find(item => item.available === true);
   }
-  
-  static async getAvailableHelpDesk() {
-    let helpDesk = this.helpDesks.find(item => item.available === true);
-    if (!helpDesk) {
-      let runningTasks = this.getRunningTasks();
+
+  static async getNextAvailableHelpDesk() {
+      let runningTasks = this.helpDesks.map(item => item.currentTask);
+      runningTasks = runningTasks.filter(item => item.status === Status.inprogress);
       await Task.race(runningTasks);
-      helpDesk = this.helpDesks.find(item => item.available === true);
-    }
-    return helpDesk;
+      return this.helpDesks.find(item => item.available === true);
   }
 }
 // This function is called by airport.js once when program starts.
@@ -61,11 +57,13 @@ function queueManager(noOfCounters: number) {
   async function registerWaiter(personName: string,
     fnCounterSimulator: (personName: string) => Promise<void>) {
 
-    let availableHelpDesk = await HelpDeskFactory.getAvailableHelpDesk();
-    if (availableHelpDesk) {
-      availableHelpDesk.assignTask(fnCounterSimulator(personName));
+    let availableHelpDesk = HelpDeskFactory.getAvailableHelpDesk();
+    if (!availableHelpDesk) {
+      availableHelpDesk = await HelpDeskFactory.getNextAvailableHelpDesk();
     }
-
+    if(availableHelpDesk){
+      availableHelpDesk.assignTask(fnCounterSimulator(`${personName} AT ${availableHelpDesk.name}`));
+    }
   }
 
   return registerWaiter
