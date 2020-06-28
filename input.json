@@ -1,9 +1,9 @@
 {"noOfCounters": 3, 
  "queue": [
-  {"name": "Mr. One", "tickets": 6, "arrivalSec": 1},
-  {"name": "Mr. Two", "tickets": 9, "arrivalSec": 2},
-  {"name": "Mr. Three", "tickets": 6, "arrivalSec": 13},
-  {"name": "Mr. Four", "tickets": 6, "arrivalSec": 4},
-  {"name": "Mr. Five", "tickets": 6, "arrivalSec": 4},
-  {"name": "Mr. Six", "tickets": 6, "arrivalSec": 5}
+  {"name": "A", "tickets": 6, "arrivalSec": 1},
+  {"name": "B", "tickets": 9, "arrivalSec": 2},
+  {"name": "C", "tickets": 6, "arrivalSec": 2},
+  {"name": "D", "tickets": 6, "arrivalSec": 4},
+  {"name": "E", "tickets": 6, "arrivalSec": 8},
+  {"name": "F", "tickets": 6, "arrivalSec": 10}
 ]}
