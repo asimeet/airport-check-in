@@ -54,23 +54,11 @@ class HelpDeskFactory {
         return helpDesk;
     }
 }
-// This function is called by ticketing-office.js once when program starts.
+// This function is called by airport.js once when program starts.
 function queueManager(noOfCounters) {
     HelpDeskFactory.create(noOfCounters);
-    // This function is called by ticketing-office.js as and when people join the queue (based on @arrivalMs).
+    // This function is called by airport.js as and when people join the queue (based on @arrivalMs).
     async function registerWaiter(personName, fnCounterSimulator) {
-        /*
-          Return a promise that gets fulfilled when personName has been serviced. To
-          service a person you must call fnCounterSimulator(personName) when you
-          are ready to service a person.
-    
-          fnCounterSimulator is already provided to you from ticketing-office.js. It
-          returns a promise that is fulfilled when requested number of tickets are issued.
-          Internally, it implements a timer for this.
-        */
-        /* -- YOUR CODE HERE -- */
-        // Following is a buggy dummy implementation. Here waiter is serviced as soon as 
-        // he is registered, without honouring the number of counters that are available.
         let availableHelpDesk = await HelpDeskFactory.getAvailableHelpDesk();
         if (availableHelpDesk)
             availableHelpDesk.assignTask(fnCounterSimulator(personName));
