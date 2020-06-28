@@ -48,7 +48,7 @@ class HelpDeskFactory {
         let helpDesk = this.helpDesks.find(item => item.available === true);
         if (!helpDesk) {
             let runningTasks = this.getRunningTasks();
-            await Promise.race(runningTasks);
+            await Task.race(runningTasks);
             helpDesk = this.helpDesks.find(item => item.available === true);
         }
         return helpDesk;
